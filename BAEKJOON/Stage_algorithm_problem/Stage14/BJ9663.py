@@ -14,14 +14,14 @@ def promising(i, queens_list):
 
 def back_tracking(cnt, queens_list):
     global count
-    n = len(queens_list) - 1
-    if promising(cnt, queens_list):
-        if cnt == n:
-            count += 1
-        else:
-            for i in range(1, n + 1):
-                queens_list[cnt + 1] = i
-                back_tracking(cnt + 1, queens_list)
+    n = len(queens_list)
+    if cnt == n - 1:
+        count += 1
+    else:
+        for i in range(1, n):
+            queens_list[cnt + 1] = i
+            if promising(cnt + 1, queens_list):
+                back_tracking(cnt + 1, list(queens_list))
 
 
 queens_list = []
